@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Animator animator;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -20,6 +21,10 @@ public class PlayerMovement : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         moveInput = new Vector2(moveX, moveY).normalized;
+        if (moveInput.x > 0)
+            spriteRenderer.flipX = false;
+        else if (moveInput.x < 0)
+            spriteRenderer.flipX = true;
         SetAnim();
     }
 
